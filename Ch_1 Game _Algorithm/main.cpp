@@ -122,43 +122,34 @@ int main()
             monsters.emplace_back(sx, sy, path);
         }
 
+        for (int i = 0; i < monsters.size(); i++)
+        {
+            Monster& monster = monsters[i];
+
+            if (monster.step >= monster.direction.size()) continue;
+            GoToXY(monster.prev_x, monster.prev_y);
+            std::cout << "  ";
+
+            int dir = monster.direction[monster.step];
+            monster.x += dx[dir];
+            monster.y += dy[dir];
+            monster.prev_x = monster.x;
+            monster.prev_y = monster.y;
+            monster.step;
+
+            GoToXY(monster.x, monster.y);
+
+
+            std::cout << "□";
+            Sleep(500);
+        }
+
     }
 
 
-
-    GoToXY(sx, sy);
-    std::cout << "□";
-
-    // direction 숫자를 받아와서 Gotoxy를 변경해보세요
-
-    int pre_x = sx;
-    int pre_y = sy;
-
-    for (int i = 0; i < monsters.size(); i++)
-    {
-        Monster& monster = monsters[i];
-
-        if (monster.step >= monster.direction.size()) continue;
-        GoToXY(monster.prev_x, monster.prev_y);
-        std::cout << "  ";
-
-        int dir = monster.direction[monster.step];
-        monster.x += dx[dir];
-        monster.y += dy[dir];
-        monster.prev_x = monster.x;
-        monster.prev_y = monster.y;
-        monster.step;
-
-        GoToXY(monster.x, monster.y);
-
-
-        std::cout << "□";
-        Sleep(300);
 
 #pragma endregion
-        //2. 여러가지 몬스터가 각자의 방향으로 움직이는 코드를 작성해보세요
+    //2. 여러가지 몬스터가 각자의 방향으로 움직이는 코드를 작성해보세요
 
-        //3. 맵에 따라서 도착지점을 자동으로 찾아주는 코드 작성 (길찾기 문제 dfs,
-    }
-
+    //3. 맵에 따라서 도착지점을 자동으로 찾아주는 코드 작성 (길찾기 문제 dfs,
 }
