@@ -24,7 +24,7 @@
     <ProjectGuid>{7ad49484-2f39-4c7a-85ed-41002e30791d}</ProjectGuid>
     <RootNamespace>Ch1GameAlgorithm</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Ch_1 Game_Algorithm</ProjectName>
+    <ProjectName>CH_1 Game_Algorithm</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
