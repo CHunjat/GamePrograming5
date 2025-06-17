@@ -119,11 +119,11 @@ void quickSort(int data[], int start, int end)
 
 	while (i <= j)  //왼쪽 인덱스를 오른쪽 인덱스가 추월 했을 때 까지 반복
 	{ 
-		while (data[i] <= data[pivot])  // 피벗보다 큰 값을 만날 때 그 값을 찾아라(i의 값을 변경해주는 코드)
+		while (data[i] >= data[pivot])  // 피벗보다 큰 값을 만날 때 그 값을 찾아라(i의 값을 변경해주는 코드)  // 내림차순 올림차순 부등호 바꾸자
 		{
 			i++;
 		}
-		while (j > start && data[j] >= data[pivot]) // 피벗보다 작은 값을 만날 때 그 (j의 값을 변경해주는 코드)
+		while (j > start && data[j] <= data[pivot]) // 피벗보다 작은 값을 만날 때 그 (j의 값을 변경해주는 코드) // 내림차순은  올림차순부등호 바꾸자
 		{
 			j--;
 		}
@@ -155,6 +155,15 @@ void quickSort(int data[], int start, int end)
 	}
 }
 
+/*
+* 내림차순 버전으로 퀵 정렬을 구현을 해보세요
+*/
+
+void qucikSort(std::vector<int>& data, int start, int end)
+{
+
+}
+
 
 #pragma endregion
 
@@ -176,7 +185,7 @@ int main()
 		std::cout << num << " ";
 	}
 
-	std::cout << "\n\n퀵 정렬 배열 형식 vector 방식" << std::endl;
+	/*std::cout << "\n\n퀵 정렬 배열 형식 vector 방식" << std::endl;
 	std::vector<int> nums2 = { 3,5,9,1,2,4,6,8,7,0 };
 	int arr2[10] = { 3,5,9,1,2,4,6,8,7,0 };
 	quickSort(arr2, 0, 9);
@@ -188,5 +197,7 @@ int main()
 	for (int num : nums2)
 	{
 		std::cout << num << " ";
-	}
+	}*/
+
+	
 } 
