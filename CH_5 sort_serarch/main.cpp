@@ -38,6 +38,21 @@
 *    검색하는 기능을 구현해보세요
 */
 
+/*
+* ★★★ 탐색과 자료구조를 연관해서 생각해보기 ★★★
+*  - vector      : 선형탐색, 이진탐색
+*   - 조건 : 사용하는 컨테이너가 정렬이 되어 있어야 한다.
+*    - 사용 중인 컨테이너의 특징 : 임의의 값을 바로 접근, 랜덤한 값을 수정할 때 비효율적이다.
+* 
+*  - list		: 랜덤한 값의 수정을 즉시 할 수 있다. 
+     - mid index의 값과 target 비교
+	   - 0 -> mid 순차적으로 탐색 후 mid 값을 반환한다.
+	     결론 : 벡터써라
+
+   단점 : logN시간을 확보했지만, 사용하기 위한 자료구조가 적합하지 않다.
+   연관 컨테이너 : set, map // 트리 구조로 구현이 되어있다.
+*/
+
 template<typename T1,typename T2>
 struct mypair
 {
@@ -187,13 +202,35 @@ void Example()
 
 }
 
-void UserDataSearch(std::vector<std::pair<int, std::string>>data, int userID)
+bool UserDataSearch(std::vector<std::pair<int, std::string>>data, int userID)
 {
-
+	//탐색 함수랑 + Pair 클래스 중복해서 코드를 표현할 수 있는가?
+	//선형 탐색
+	for (int i = 0; i < data.size(); i++)
+	{
+		if (data[i].first == userID)
+		{
+			std::cout << "닉네임 : " << data[i].second << std::endl;
+			return true;
+		}
+	}
+	std::cout << "유저 아이디에 해당하는 데이터가 없습니다" << std::endl;
+	return false;
 }
 
 int main()
 {
+	std::cout << "유저 아이디로 닉네임 검색하기 예제" << std::endl;
+	std::vector < std::pair<int, std::string>> data3;
+	data3.push_back({ 0,"aaa" }); data3.push_back({ 1,"bbb" });
+	data3.push_back({ 2,"ccc" }); data3.push_back({ 3,"ddd" });
+	if (UserDataSearch(data3, 3)) //해당하는 유저 아이디가 존재한다면
+	{
+		data3[3].second = "eee";
+		//무엇을 해야 할까? data3[3] -> 변경하는 코드를 작성할 수있다.
+		//닉네임은 변경하세요 // 비밀번호를 입력하고 해당 닉네임으로 로그인 한다.
+	}
+
 	std::cout << "\n배열로 구현한 선형 탐색" << std::endl;
 	int arr[5] = { 0,5,2,4,9 };
 	LinearSearch(arr, 5, 2);
