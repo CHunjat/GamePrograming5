@@ -204,14 +204,17 @@ private:
 			{
 				Node* temp = node->leftNode != nullptr ? node->leftNode : node->rightNode;
 
-				if (temp == nullptr)
+				if (temp == nullptr)// 자식이 없는 경우
 				{
-					temp = node;
-					node = nullptr;
+					temp = node; // 지우고 싶은 노드를 임시로 저장( 지워야할 메모리를 가리키고 있다)
+					node = nullptr; // 지우고 싶은 노드를 null 가리키도록 수정
+					delete temp;   // 임시보관할 주소를 지워라
 				}
 				else
 				{
-					node = temp;
+					Node* nodeTodelete = node; //지울 노드를 잠시 저장할 변수를 선언,
+					node = temp;			   // 1개만 있는 자식(temp)을 지워야할 노드 위치로 이동
+					delete nodeTodelete;       // 지워야할 노드(nodeTodelete) - 메모리를 해제
 				}
 			}
 			else //자식이 둘인경우
@@ -258,13 +261,18 @@ public:
 		root = deleteNode(root, value);
 	}
 
+	void ReturnRoot()
+	{
+		std::cout << "루트의 저장된 값 : " << root->value << std::endl;
+	}
+
 };
 
 #pragma endregion
 
 int main()
 {
-	//NodeConnect();
+	NodeConnect();
 	BST bst;	
 	bst.insert(4);
 	bst.insert(2);
@@ -276,7 +284,7 @@ int main()
 	bst.insert(1);
 	std::cout << "이진 검색 트리 데이터 입력 예시" << std::endl;
 	bst.InOrder();
-	std::cout << " \n 6 데이터 삭제 후 결과 " << std::endl;
+	std::cout << " \n 6. 데이터 삭제 후 결과 " << std::endl;
 	bst.DeleteNode(6);
 	bst.InOrder();
 

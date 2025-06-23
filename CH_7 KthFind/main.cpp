@@ -29,7 +29,7 @@ void EmergencyExample()
 
 	for (int i = 0; i < people.size(); i++)
 	{
-		sheets.insert({ i,people[i] });
+		sheets.insert({ people[i],i }); 
 	}
 
 
@@ -58,8 +58,9 @@ void EmergencyExample()
 
 	for (int i = 0; i < people.size(); i++) //7
 	{
-		int key = sheets.find(people[people.size() - 1-i])->first; 
-		answer[key] = i + 1;
+		auto it = sheets.find(people[people.size() - 1 - i]);
+		int index = it->second;
+		answer[index] = i + 1;
 	}
 
 	std::cout << "[";
