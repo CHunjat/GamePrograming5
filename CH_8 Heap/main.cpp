@@ -68,12 +68,8 @@ private:
 
 		// node->par
 
-		while (node->value > node->parentnode->value) //변경을 하기 위한 조건
+		while (node->parentnode != nullptr && node->value > node -> parentnode -> value ) //변경을 하기 위한 조건
 		{
-			if (node->parentnode != nullptr)
-			{
-				break;
-			}
 			//알고리즘 헤더를 추가해준다음에, 부모 노드와 자기 노드를 swap해준다 (value를 swap)
 			// swap후에 node를 부모 노드와 변경해준다. (부모 노드를 가리키고 있는 것을 변경한다)
 			std::swap(node->value, node->parentnode->value);
@@ -81,7 +77,7 @@ private:
 		}
 	}
 
-	Node* fineLastNode() // 노드를 삭제할 때 규칙1을 만족시키기 위해서 가장 마지막 노드를 찾는다.
+	Node* findLastNode() // 노드를 삭제할 때 규칙1을 만족시키기 위해서 가장 마지막 노드를 찾는다.
 	{
 		if (!root) return nullptr; // 데이터가 1개도 없는 경우 실행시키지마세요
 	
@@ -97,7 +93,7 @@ private:
 			{
 				q.push(lastNode->leftnode);
 			}
-			if (lastNode->rightnode);
+			if (lastNode->rightnode) 
 			{
 				q.push(lastNode->rightnode);
 			}
@@ -215,7 +211,7 @@ public:
 		}
 
 		// 1. 마지막 노드를 찾으세요
-		Node* lastnode = fineLastNode();
+		Node* lastnode = findLastNode();
 		if (!lastnode) return -2; // if(-1) 갯수가 0 , (-2) 마지막 노드를 찾는 코드가 에러가 있읍니다. 
 
 
@@ -240,6 +236,39 @@ public:
 		heapifydown(root);    //
 
 		return maxValue;
+	}
+
+	std::vector<int> toArray()
+	{
+		std::vector<int> result;
+		
+		// 힙으로 저장한 자료구조를 벡터로 변환해보세요
+
+		// while queue 자료형을 사용해서 데이터를 탐색하는 형태의 코드
+
+		if (!root) return result;
+		std::queue<Node*> q;
+		q.push(root);  //rootrk nullptr
+
+		while (!q.empty())
+		{
+			Node* node = q.front();
+			q.pop(); // pop 을해야 지워줄수 있다 나중에
+			result.push_back(node->value);
+
+			if (node->leftnode)
+			{
+				q.push(node->leftnode);
+			}
+
+			if (node->rightnode)
+			{
+				q.push(node->rightnode);
+			}
+
+		}
+
+		return result;
 	}
 };
 
@@ -275,13 +304,23 @@ int main()
 	mHeap.insert(5);
 	mHeap.insert(11);
 
+	std::cout << "Heap 자료구조의 트리 저장 순서대로 출력하는 예제" << std::endl;
+	std::vector<int> tempV = mHeap.toArray();
+
+	for (auto& data : tempV) //auto는 뒤에있는 거 보고 자동으로 해줌
+	{
+		std::cout << data << "  "; 
+	}
+
 	std::cout << "가장 큰 수를 반환하고 다시 Heap 정렬 하는 예제" << std::endl;
 	int maxValue = mHeap.extractMax(); //1번째 큰 수 
+    int k = 2;
 	int kthValue;
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < k-1; i++)
 	{
 		kthValue = mHeap.extractMax(); // 2번째로 큰 수 kthvalue 저장된다
 	}
 
-	// k번째로 큰 수를 찾아라.
+	 //k번째로 큰 수를 찾아라.
+	std::cout << " k번째로 큰 수는 : " << kthValue << std::endl;
 }

@@ -19,6 +19,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CH_7 KthFind", "..\CH_7 Kth
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CH_8 Heap", "..\CH_8 Heap\CH_8 Heap.vcxproj", "{4432BCD6-AC8F-4C9D-BF15-6BE815F54066}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CH_9 Threat System", "..\CH_9 Threat System\CH_9 Threat System.vcxproj", "{6D1E7C94-DCB2-44E6-ACF0-531557A96785}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -91,6 +93,14 @@ Global
 		{4432BCD6-AC8F-4C9D-BF15-6BE815F54066}.Release|x64.Build.0 = Release|x64
 		{4432BCD6-AC8F-4C9D-BF15-6BE815F54066}.Release|x86.ActiveCfg = Release|Win32
 		{4432BCD6-AC8F-4C9D-BF15-6BE815F54066}.Release|x86.Build.0 = Release|Win32
+		{6D1E7C94-DCB2-44E6-ACF0-531557A96785}.Debug|x64.ActiveCfg = Debug|x64
+		{6D1E7C94-DCB2-44E6-ACF0-531557A96785}.Debug|x64.Build.0 = Debug|x64
+		{6D1E7C94-DCB2-44E6-ACF0-531557A96785}.Debug|x86.ActiveCfg = Debug|Win32
+		{6D1E7C94-DCB2-44E6-ACF0-531557A96785}.Debug|x86.Build.0 = Debug|Win32
+		{6D1E7C94-DCB2-44E6-ACF0-531557A96785}.Release|x64.ActiveCfg = Release|x64
+		{6D1E7C94-DCB2-44E6-ACF0-531557A96785}.Release|x64.Build.0 = Release|x64
+		{6D1E7C94-DCB2-44E6-ACF0-531557A96785}.Release|x86.ActiveCfg = Release|Win32
+		{6D1E7C94-DCB2-44E6-ACF0-531557A96785}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
