@@ -43,6 +43,23 @@ using namespace std;
 /*
 * 게임 속에서 점과 선으로 연결되어 있는 이미지를 하나 찾아보세요.
 * 점과 선을 그래프로 표현하는 것을 아무 주제나 선택해보세요 실행해보세요
+* 
+*/
+
+/*
+* 그래프의 탐색 방법(순회)
+*  - DFS 깊이 우선 탐색
+*    - Stack 구현
+*  - BFS 너비 우선 탐색
+*    - Queue 구현
+*/
+
+/*
+* 
+* 언제 DFS와 BFS 를 사용할 수 있는가?
+*    - 1) 그래프를 탐색할 때 쉽게 구현할 수 있는 것을 선택하세여
+*    - 2) DFS - 그래프가 순회를 하고 있는지 파악할 때
+*    - 3) BFS - 특정위치까지 최소의 거리로 도달하는 것
 */
 
 class Graph
@@ -72,7 +89,6 @@ private:
 		//방문한 점은 ture 변환
 		//재귀함수 방식을 사용하지 않고 반복문 사용해서 표현해보세요
 		stack<int> stack;
-		visited[v] = true;
 		stack.push(v);
 		while (!stack.empty())
 		{
@@ -84,20 +100,79 @@ private:
 
 			if (visited[cvertex] == false)
 			{
-				visited[cvertex] == true;
-				cout << v << " ";
+				visited[cvertex] = true;
+				cout << cvertex << " ";
 			}
 
 			//이웃노드
 			for (int i = adj[cvertex].size() - 1; i >= 0; i--)
 			{
 				int neighbor = adj[cvertex][i];
-				if (!visited[neighbor] == false)
+				if (visited[neighbor] == false)
 				{
 					stack.push(neighbor);
 				}
 			}
 		}
+	}
+
+	void BFSIter(int start)
+	{
+		queue<int> q;
+		visited[start] = true;
+		q.push(start);        //그래프의 시작노드를 삽입하라
+
+		while (!q.empty())
+		{
+			int c = q.front();
+			q.pop();
+
+			cout << c << " ";
+
+			// c에 연결되어 있는 노드를 접근하는 코드 adj[c]
+
+			for (auto& e : adj[c])
+			{
+				if (visited[e] == false)
+				{
+					visited[e] = true;
+					q.push(e);
+				}	
+			}
+		}
+	}
+
+	void BFSRecursive(queue<int>& q)
+	{
+		// 1.재귀함수의 탈출 조건을 작성해보세요 (q가 empty) 일때
+		// BFS 반복방식의 코드를 여기에 가져와보세요
+
+		if (q.empty()) { return; }
+
+		// front, pop, push
+
+		int c = q.front();
+		q.pop();
+		cout << c << " ";
+
+		for (auto& e : adj[c])
+		{
+			if (!visited[e])
+			{
+				visited[e] = true;
+				q.push(e);
+			}
+		}
+
+		BFSRecursive(q);
+	}
+
+	void BFS(int start)
+	{
+		queue<int> q;
+		q.push(start);
+		visited[start] = true;
+		BFSRecursive(q);
 	}
 
 public:
@@ -110,7 +185,7 @@ public:
 
 	void addEdge(int u, int v)
 	{
-		adj[u].push_back(v);
+		adj[u].push_back(v);   // u가 1,    v가 2   1번 점에 연결된 값 : 2
 		adj[v].push_back(u);
 	}
 
@@ -118,10 +193,10 @@ public:
 	{
 		for (int i = 0; i < V; i++)
 		{
-			std::cout << "정점 " << i << " 의 인접한 리스트 : " << endl;
+			std::cout << "정점 " << i << "의 인접한 리스트: ";
 			for (auto& elem : adj[i])
 			{
-				cout << " -> " << elem;
+				cout << " ->" << elem;
 			}
 			cout << endl;
 		}
@@ -132,7 +207,7 @@ public:
 		// 방문한 경험을 리셋시킨다. 
 		fill(visited.begin(), visited.end(), false);
 
-		cout << "DFS 탐색 결과 (시작 지점 : " << startV << ")";
+		cout << "DFS 재귀 방식 탐색 결과 (시작 지점 : " << startV << ")" << endl;
 		DFS(startV);
 		cout << endl;
 	}
@@ -141,7 +216,24 @@ public:
 	{
 		fill(visited.begin(), visited.end(), false);
 
-		cout << "DFS Iterative 방식 탐색 결과 ( 시작지점 : " << startV << ")";
+		cout << "DFS Iterative 방식 탐색 결과 (시작 지점 : " << startV << ")" << endl;
+		DFSIter(startV);
+		cout << endl;
+	}
+
+	void BFSIterTraverse(int startV)
+	{
+		fill(visited.begin(), visited.end(), false); // 방문 경험을 초기화 하는 코드
+		cout << "BFS Iterative 방식 탐색 결과 (시작 지점 : " << startV << ")" << endl;
+		BFSIter(startV);
+		cout << endl;
+
+	}void BFSTraverse(int startV)
+	{
+		fill(visited.begin(), visited.end(), false); // 방문 경험을 초기화 하는 코드
+		cout << "BFS Iterative 방식 탐색 결과 (시작 지점 : " << startV << ")" << endl;
+		BFS(startV);
+		cout << endl;
 	}
 	
 
@@ -178,19 +270,20 @@ public:
 
 int main()
 {
-	Graph g(4);
+	Graph g(6);
 	g.addEdge(0, 1);
 	g.addEdge(0, 2);
-	g.addEdge(0, 3);
-	g.addEdge(1, 2);
 	g.addEdge(1, 3);
+	g.addEdge(2, 4);
+	g.addEdge(2, 5);
 	g.DFSTraverse(3);
-	g.DFSIterTraverse(0);
+	g.DFSIterTraverse(3);
+	g.BFSIterTraverse(0);
+	g.BFSTraverse(0);
 	g.PrintGraph();
 
 
 	GraphMatrix gn(4);
-
 	gn.addEdge(0, 1);
 	gn.addEdge(0, 2);
 	gn.addEdge(0, 3);
