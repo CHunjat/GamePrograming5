@@ -25,6 +25,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CH_10 Graph", "..\CH_10 Gra
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CH_11 Graph_Traverse", "..\CH_11 Graph_Traverse\CH_11 Graph_Traverse.vcxproj", "{31BDC0BF-6985-44C9-9F07-1AEF601A3408}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CH_12 GameGraph", "..\CH_12 GameGraph\CH_12 GameGraph.vcxproj", "{44C34564-DABB-4EE0-824F-CD773646A6EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -121,6 +123,14 @@ Global
 		{31BDC0BF-6985-44C9-9F07-1AEF601A3408}.Release|x64.Build.0 = Release|x64
 		{31BDC0BF-6985-44C9-9F07-1AEF601A3408}.Release|x86.ActiveCfg = Release|Win32
 		{31BDC0BF-6985-44C9-9F07-1AEF601A3408}.Release|x86.Build.0 = Release|Win32
+		{44C34564-DABB-4EE0-824F-CD773646A6EE}.Debug|x64.ActiveCfg = Debug|x64
+		{44C34564-DABB-4EE0-824F-CD773646A6EE}.Debug|x64.Build.0 = Debug|x64
+		{44C34564-DABB-4EE0-824F-CD773646A6EE}.Debug|x86.ActiveCfg = Debug|Win32
+		{44C34564-DABB-4EE0-824F-CD773646A6EE}.Debug|x86.Build.0 = Debug|Win32
+		{44C34564-DABB-4EE0-824F-CD773646A6EE}.Release|x64.ActiveCfg = Release|x64
+		{44C34564-DABB-4EE0-824F-CD773646A6EE}.Release|x64.Build.0 = Release|x64
+		{44C34564-DABB-4EE0-824F-CD773646A6EE}.Release|x86.ActiveCfg = Release|Win32
+		{44C34564-DABB-4EE0-824F-CD773646A6EE}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
